@@ -40,20 +40,3 @@ func UpdateTask(
 	)
 	return err
 }
-
-func UpdateTitle(
-	ctx context.Context,
-	conn *pgx.Conn,
-	id int,
-	newTitle string,
-) error {
-	sqlQuery := `
-	UPDATE tasks
-	SET title=$1
-	WHERE if=$2;
-	`
-
-	_, err := conn.Exec(ctx, sqlQuery, newTitle, id)
-
-	return err
-}
